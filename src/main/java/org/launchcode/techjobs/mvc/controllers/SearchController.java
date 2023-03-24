@@ -32,13 +32,15 @@ public class SearchController {
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
         //displaySearchResults method with model parameter, searchType and searchTerm parameter
         ArrayList<Job> jobs = new ArrayList<>();
-        //stores in array list
+        //stores searched jobs in an array list
         if ( (searchTerm == ("all")) || (searchTerm == ("")) ) {
             jobs = JobData.findAll();
     }
+        //if "all" is entered or box left empty, findAll() method called
         else {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
         }
+
 
     model.addAttribute("jobs", jobs);
     model.addAttribute("columns", columnChoices);
